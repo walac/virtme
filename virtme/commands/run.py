@@ -53,6 +53,8 @@ def make_parser() -> argparse.ArgumentParser:
 
     g.add_argument('-a', '--kopt', action='append', default=[],
                    help='Add a kernel option.  You can specify this more than once.')
+    g.add_argument('--mdir', action='store',
+                   help='Use specified module directory.')
 
     g.add_argument('--xen', action='store',
                    help='Boot Xen using the specified uncompressed hypervisor.')
@@ -237,6 +239,9 @@ def find_kernel_and_mods(arch, args) -> Kernel:
             arg_fail("--mods is not currently supported properly with --kimg")
     else:
         arg_fail('You must specify a kernel to use.')
+
+    if args.mdir:
+        kernel.moddir = args.mdir
 
     return kernel
 

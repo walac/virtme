@@ -67,8 +67,12 @@ Once you have such a kernel, run one of:
 * virtme-run --installed-kernel
 * virtme-run --installed-kernel VERSION
 * virtme-run --kimg PATH_TO_KERNEL_IMAGE
+* virtme-run --kimg PATH_TO_KERNEL_IMAGE --mdir PATH_TO_MODULE_DIR
 
-With --installed-kernel or --kdir, modules associated with the kernel will be available in the VM.  With --kdir in particular, you will either need to follow the directions that virtme-run prints or specify --mods=auto to make this work.  With --kimg, modules are not supported.
+For instance, let's say you built a v4.15 x86 kernel with modules enabled.
+You would execute this command:
+
+    virtme-run --kimg arch/x86/boot/bzImage --mdir /lib/modules/4.15.0
 
 You can then do things like `cd /home/username` and you will have readonly
 access to all your files.
